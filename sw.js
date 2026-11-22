@@ -12,7 +12,8 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  // Only clear this app's old caches: other apps on the same github.io address share this cache storage.
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('audiobooks-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
 self.addEventListener('fetch', e => {
