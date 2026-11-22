@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Audiobooks</title>
+  <meta name="description" content="Record your own audiobooks chapter by chapter and listen back.">
+  <meta name="theme-color" content="#14110e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Audiobooks">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-listen" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4.5" height="6.5" rx="1.8"/><rect x="16.5" y="14" width="4.5" height="6.5" rx="1.8"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></symbol>
+    <symbol id="i-backup" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4.5" rx="1.2"/><path d="M5 8.5V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19V8.5M10 12.5h4"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.4v13.2a1 1 0 0 0 1.53.85l10.4-6.6a1 1 0 0 0 0-1.7L9.53 4.55A1 1 0 0 0 8 5.4z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6.5" y="5" width="3.6" height="14" rx="1.1" fill="currentColor" stroke="none"/><rect x="13.9" y="5" width="3.6" height="14" rx="1.1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-back15" viewBox="0 0 24 24"><path d="M4.6 14.5A8 8 0 1 0 6.2 6.4"/><path d="M6.6 2.6l-.5 3.9 3.9.4"/><text x="12.4" y="15.6" font-size="7.6" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none" font-family="-apple-system, system-ui, sans-serif">15</text></symbol>
+    <symbol id="i-fwd30" viewBox="0 0 24 24"><path d="M19.4 14.5A8 8 0 1 1 17.8 6.4"/><path d="M17.4 2.6l.5 3.9-3.9.4"/><text x="11.6" y="15.6" font-size="7.6" font-weight="600" text-anchor="middle" fill="currentColor" stroke="none" font-family="-apple-system, system-ui, sans-serif">30</text></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18 19.2 8.8 12 18 4.8z" fill="currentColor"/><path d="M6 5v14"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M6 4.8 15.2 12 6 19.2z" fill="currentColor"/><path d="M18 5v14"/></symbol>
+    <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="18.5" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5V5.5A2.5 2.5 0 0 1 6.5 3H20v14H6.5A2.5 2.5 0 0 0 4 19.5zm0 0A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 11v8.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V11"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M5 17v2.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V17"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 13.4A8.5 8.5 0 1 1 10.6 3.5a6.6 6.6 0 0 0 9.9 9.9z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1" fill="currentColor"/><circle cx="4.5" cy="12" r="1" fill="currentColor"/><circle cx="4.5" cy="18" r="1" fill="currentColor"/></symbol>
+  </svg>
+
+  <div id="app">
+    <main id="view" tabindex="-1"></main>
+    <div id="dock">
+      <div id="mini" hidden>
+        <button id="mini-open" class="mini-open" data-act="np-open">
+          <span class="mini-text"><strong id="mini-title"></strong><span id="mini-sub" class="muted small"></span></span>
+        </button>
+        <button id="mini-toggle" class="icon-btn mini-toggle js-toggle" data-act="toggle" aria-label="Play"></button>
+        <span class="mini-track"><i id="mini-bar"></i></span>
+      </div>
+      <nav id="tabs" aria-label="Sections">
+        <a href="#/listen" data-tab="listen"><svg class="ic" aria-hidden="true"><use href="#i-listen"/></svg><span>Listen</span></a>
+        <a href="#/record" data-tab="record"><svg class="ic" aria-hidden="true"><use href="#i-mic"/></svg><span>Record</span></a>
+        <a href="#/backup" data-tab="backup"><svg class="ic" aria-hidden="true"><use href="#i-backup"/></svg><span>Backup</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <section id="np" hidden aria-label="Now playing">
+    <header class="np-head">
+      <button class="icon-btn" data-act="np-close" aria-label="Close player"><svg class="ic" aria-hidden="true"><use href="#i-chev-down"/></svg></button>
+      <span id="np-book" class="muted small"></span>
+      <span class="icon-btn" aria-hidden="true"></span>
+    </header>
+    <div class="np-body">
+      <div id="np-cover" class="np-cover cover"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></div>
+      <h2 id="np-title"></h2>
+      <p id="np-sub" class="muted"></p>
+      <input id="np-seek" type="range" min="0" max="1" step="0.1" value="0" aria-label="Position in chapter">
+      <div class="np-times mono small muted"><span id="np-pos">0:00</span><span id="np-left">-0:00</span></div>
+      <div class="np-controls">
+        <button class="icon-btn" data-act="prev" aria-label="Previous chapter"><svg class="ic" aria-hidden="true"><use href="#i-prev"/></svg></button>
+        <button class="icon-btn lg" data-act="back15" aria-label="Back 15 seconds"><svg class="ic" aria-hidden="true"><use href="#i-back15"/></svg></button>
+        <button class="play-btn js-toggle" data-act="toggle" aria-label="Play"></button>
+        <button class="icon-btn lg" data-act="fwd30" aria-label="Forward 30 seconds"><svg class="ic" aria-hidden="true"><use href="#i-fwd30"/></svg></button>
+        <button class="icon-btn" data-act="next" aria-label="Next chapter"><svg class="ic" aria-hidden="true"><use href="#i-next"/></svg></button>
+      </div>
+      <div class="np-extra">
+        <button class="chip" data-act="speed" aria-label="Playback speed"><span id="np-speed">1×</span></button>
+        <button class="chip" data-act="sleep"><svg class="ic" aria-hidden="true"><use href="#i-moon"/></svg><span id="np-sleep">Sleep timer</span></button>
+        <button class="chip" data-act="np-chapters"><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg><span>Chapters</span></button>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="sheet"></dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <audio id="audio" preload="auto" playsinline></audio>
+
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
